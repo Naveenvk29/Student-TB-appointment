@@ -8,6 +8,7 @@ import {
   getUserProfile,
   updateUserProfile,
   approveStatus,
+  addteacher,
 } from "../controllers/user.constroller.js";
 import {
   authenticated,
@@ -25,13 +26,25 @@ router.post("/login", loginUser);
 router.post("/logout", logout);
 
 router
-  .route("user/:id")
-  .get(authenticated, authorizationasAdmin, authorizationasteacher, getUserById)
-  .post(authenticated, authorizationasAdmin, approveStatus);
+  .route("/user/:id")
+  .get(
+    authenticated,
+    authorizationasAdmin,
+    authorizationasteacher,
+    getUserById
+  );
 
 router
   .route("/profile")
   .get(authenticated, getUserProfile)
   .put(authenticated, updateUserProfile);
+
+router.post("/status/:id", authenticated, authorizationasAdmin, approveStatus);
+router.post(
+  "/add-teacher/:id",
+  authenticated,
+  authorizationasAdmin,
+  addteacher
+);
 
 export default router;

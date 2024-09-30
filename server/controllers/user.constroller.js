@@ -4,7 +4,7 @@ import createToken from "../utils/createToken.js";
 // import mongoose from "mongoose";
 
 const createUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, phone, address } = req.body;
 
   if (!username || !email || !password) {
     return res.status(400).json({ message: "All fields are required" });
@@ -18,6 +18,8 @@ const createUser = asyncHandler(async (req, res) => {
     username,
     email,
     password,
+    phone,
+    address,
   });
   try {
     await user.save();
@@ -26,6 +28,8 @@ const createUser = asyncHandler(async (req, res) => {
       id: user._id,
       username: user.username,
       email: user.email,
+      phone: user.phone,
+      address: user.address,
       role: user.role,
       status: user.status,
     });
@@ -106,9 +110,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   user.password = req.body.password || user.password;
   user.phone = req.body.phone || user.phone;
   user.address = req.body.address || user.address;
-  if (req.user.role == "admin") {
-    user.role = req.body.role || user.role;
-  }
   const updateduser = await user.save();
   res.json({
     id: updateduser._id,
@@ -119,12 +120,32 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   });
 });
 
+const addteacher = asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  if (req.user.role === "admin") {
+    user.role = "teacher";
+    const newteacher = await user.save();
+    res.json({
+      id: newteacher._id,
+      username: newteacher.username,
+      email: newteacher.email,
+      role: newteacher.role,
+      status: newteacher.status,
+    });
+  }
+});
+
 const approveStatus = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
   user.status = req.body.status || user.status;
+
   await user.save();
   res.json({ message: "User status updated successfully" });
 });
@@ -137,5 +158,6 @@ export {
   getUserById,
   getUserProfile,
   updateUserProfile,
+  addteacher,
   approveStatus,
 };

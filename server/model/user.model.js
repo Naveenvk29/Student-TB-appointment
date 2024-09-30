@@ -34,7 +34,6 @@ const userSchema = mongoose.Schema(
     ],
     phone: {
       type: String,
-      unique: true,
     },
     address: {
       street: { type: String },
