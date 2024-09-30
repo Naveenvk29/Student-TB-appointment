@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     username: {
       type: String,
@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["active", "inactive"],
-      default: "active",
+      enum: ["approved", "rejected", "pending"],
+      default: "pending",
     },
     appointments: [
       {
@@ -32,7 +32,18 @@ const userSchema = new mongoose.Schema(
         ref: "Appointment",
       },
     ],
+    phone: {
+      type: String,
+      unique: true,
+    },
+    address: {
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      zip: { type: String },
+    },
   },
+
   {
     timestamps: true,
   }
@@ -40,7 +51,7 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  this.password = await bcrypt.hast(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 userSchema.methods.isPasswordVaild = async function (password) {
