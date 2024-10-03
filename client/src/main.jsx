@@ -14,12 +14,18 @@ import {
 //
 import Login from "./pages/Auth/Login.jsx";
 import Registration from "./pages/Auth/Registration.jsx";
-
+import PrivateRoutes from "./pages/User/privateRoutes.jsx";
+import Profile from "./pages/User/Profile.jsx";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Registration />} />
+
+      {/* Private routes */}
+      <Route path="" element={<PrivateRoutes />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
     </Route>
   )
 );
