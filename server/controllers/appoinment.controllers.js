@@ -51,9 +51,22 @@ const getAppointmentById = asyncHandler(async (req, res) => {
 
 const updateAppointment = asyncHandler(async (req, res) => {
   const appointment = await Appointment.findById(req.params.id);
+
   if (!appointment) {
     return res.status(404).json({ message: "Appointment not found." });
   }
+  appointment.feedback = req.body.feedback || appointment.feedback;
+  appointment.status = req.body.status || appointment.status;
+  const updatedAppoinment = await appointment.save();
+  res.json({
+    _id: updatedAppoinment._id,
+    studentId: appointment.studentId,
+    teacherId: appointment.teacherId,
+    purpose: appointment.purpose,
+    appointmentTime: appointment.appointmentTime,
+    feedback: appointment.feedback,
+    status: appointment.status,
+  });
 });
 
 const deleteAppointment = asyncHandler(async (req, res) => {
@@ -65,15 +78,15 @@ const deleteAppointment = asyncHandler(async (req, res) => {
   res.json({ message: "Appointment deleted successfully." });
 });
 
-const getAllAppointmentsByStudentId = asyncHandler(async (req, res) => {
-  const appointments = await Appointment.find({ studentId: req.params.id });
-  res.json(appointments);
-});
+// const getAllAppointmentsByStudentId = asyncHandler(async (req, res) => {
+//   const appointments = await Appointment.find({ studentId: req.params.id });
+//   res.json(appointments);
+// });
 
-const getAllAppointmentsByTeacherId = asyncHandler(async (req, res) => {
-  const appointments = await Appointment.find({ teacherId: req.params.id });
-  res.json(appointments);
-});
+// const getAllAppointmentsByTeacherId = asyncHandler(async (req, res) => {
+//   const appointments = await Appointment.find({ teacherId: req.params.id });
+//   res.json(appointments);
+// });
 
 export {
   createAppointment,
