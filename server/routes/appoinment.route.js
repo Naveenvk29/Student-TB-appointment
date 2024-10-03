@@ -5,8 +5,8 @@ import {
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
-  getAllAppointmentsByStudentId,
-  getAllAppointmentsByTeacherId,
+  //   getAllAppointmentsByStudentId,
+  getAppointmentsByTeacherId,
 } from "../controllers/appoinment.controllers.js";
 import {
   authenticatedUser,
@@ -27,12 +27,12 @@ router
   .put(authenticatedUser, authoriziedAsTeacher, updateAppointment)
   .delete(authenticatedUser, authoriziedAsTeacher, deleteAppointment);
 
-router
-  .route("/student/:id")
-  .get(authenticatedUser, authoriziedAsAdmin, getAllAppointmentsByStudentId);
+// router
+//   .route("/student/:id")
+//   .get(authenticatedUser, authoriziedAsAdmin, getAllAppointmentsByStudentId);
 
 router
   .route("/teacher/:id")
-  .get(authenticatedUser, authoriziedAsAdmin, getAllAppointmentsByTeacherId);
+  .get(authenticatedUser, authoriziedAsAdmin, getAppointmentsByTeacherId);
 
 export default router;

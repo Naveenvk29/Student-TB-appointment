@@ -1,8 +1,14 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Naigation from "./pages/Home/Naigation";
+import { Outlet } from "react-router-dom";
 const App = () => {
   return (
-    <div>
-      <h1 className="text-5xl font-black">Heloo</h1>
-    </div>
+    <>
+      <ToastContainer />
+      <Naigation />
+      <Outlet />
+    </>
   );
 };
 

@@ -110,6 +110,6 @@ export {
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
-  getAllAppointmentsByStudentId,
+  // getAllAppointmentsByStudentId,
   getAppointmentsByTeacherId,
 };
