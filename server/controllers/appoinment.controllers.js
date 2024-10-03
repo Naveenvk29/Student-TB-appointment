@@ -83,10 +83,26 @@ const deleteAppointment = asyncHandler(async (req, res) => {
 //   res.json(appointments);
 // });
 
-// const getAllAppointmentsByTeacherId = asyncHandler(async (req, res) => {
-//   const appointments = await Appointment.find({ teacherId: req.params.id });
-//   res.json(appointments);
-// });
+const getAppointmentsByTeacherId = asyncHandler(async (req, res) => {
+  const { teacherId } = req.params;
+
+  // Validate if teacherId is provided
+  if (!teacherId) {
+    return res.status(400).json({ message: "Teacher ID is required" });
+  }
+
+  // Fetch all appointments for the teacher
+  const appointments = await Appointment.find({ teacherId });
+
+  // Check if appointments exist
+  if (appointments.length === 0) {
+    return res
+      .status(404)
+      .json({ message: "No appointments found for this teacher." });
+  }
+
+  res.json(appointments);
+});
 
 export {
   createAppointment,
@@ -95,5 +111,5 @@ export {
   updateAppointment,
   deleteAppointment,
   getAllAppointmentsByStudentId,
-  getAllAppointmentsByTeacherId,
+  getAppointmentsByTeacherId,
 };
