@@ -73,7 +73,7 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 const getAllUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({}).select("-password");
   res.json(users);
 });
 
@@ -163,7 +163,7 @@ const addTeacher = asyncHandler(async (req, res) => {
 
 const approveStatus = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id);
+  const user = await User.findById(id).select("-password");
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
