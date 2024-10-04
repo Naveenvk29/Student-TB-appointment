@@ -16,7 +16,7 @@ import Login from "./pages/Auth/Login.jsx";
 import Registration from "./pages/Auth/Registration.jsx";
 import PrivateRoutes from "./pages/User/privateRoutes.jsx";
 import Profile from "./pages/User/Profile.jsx";
-
+import BookAppointment from "./pages/Appointment/BookAppointment.jsx";
 //
 import AdminRoutes from "./pages/Admin/AdminRoutes.jsx";
 import AddTeacher from "./pages/Admin/AddTeacher.jsx";
@@ -27,16 +27,19 @@ import TeacherbyID from "./pages/Admin/TeacherbyID.jsx";
 import UserList from "./pages/Admin/UserList.jsx";
 import UserByID from "./pages/Admin/UserByID.jsx";
 import AdminDashBoard from "./pages/Admin/DashBoard/AdminDashBoard.jsx";
+import Appointments from "./pages/User/Appointments.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Registration />} />
+      <Route path="/book-appointment" element={<BookAppointment />} />
 
       {/* Private routes */}
       <Route path="" element={<PrivateRoutes />}>
         <Route path="/profile" element={<Profile />} />
+        <Route path="/appointments" element={<Appointments />} />
       </Route>
 
       {/* Admin routes */}
@@ -48,8 +51,8 @@ const routes = createBrowserRouter(
         <Route path="/admin/teachers" element={<Teacterslist />} />
         <Route path="/admin/teacher/:userId" element={<TeacherbyID />} />
 
-        <Route path="/admin/users" element={<UserList />} />
         <Route path="/admin/user/:userId" element={<UserByID />} />
+        <Route path="/admin/users" element={<UserList />} />
         <Route
           path="/admin/approve-students/:id"
           element={<ApproveStudents />}

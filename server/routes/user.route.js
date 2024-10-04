@@ -20,10 +20,7 @@ const router = express.Router();
 
 // User Registration
 
-router
-  .route("/")
-  .post(register)
-  .get(authenticatedUser, authoriziedAsAdmin, getAllUsers);
+router.route("/").post(register).get(getAllUsers);
 
 // User Login
 router.post("/login", login);
