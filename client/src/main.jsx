@@ -28,6 +28,9 @@ import UserList from "./pages/Admin/UserList.jsx";
 import UserByID from "./pages/Admin/UserByID.jsx";
 import AdminDashBoard from "./pages/Admin/DashBoard/AdminDashBoard.jsx";
 import Appointments from "./pages/User/Appointments.jsx";
+import TeacherRoutes from "./pages/Teachers/TeacherRoutes.jsx";
+import GetAppointment from "./pages/Teachers/GetAppointment.jsx";
+import UpdatedAppointment from "./pages/Teachers/UpdatedAppointment.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +38,16 @@ const routes = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Registration />} />
       <Route path="/book-appointment" element={<BookAppointment />} />
+
+      {/* teacher */}
+
+      <Route path="" element={<TeacherRoutes />}>
+        <Route path="/teacher/get-appointment" element={<GetAppointment />} />
+        <Route
+          path="/teacher/update-appointment/:appointmentId"
+          element={<UpdatedAppointment />}
+        />
+      </Route>
 
       {/* Private routes */}
       <Route path="" element={<PrivateRoutes />}>
