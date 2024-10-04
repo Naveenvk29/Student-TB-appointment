@@ -21,7 +21,11 @@ import Profile from "./pages/User/Profile.jsx";
 import AdminRoutes from "./pages/Admin/AdminRoutes.jsx";
 import AddTeacher from "./pages/Admin/AddTeacher.jsx";
 import ApproveStudents from "./pages/Admin/ApproveStudents.jsx";
-import GetAllUser from "./pages/Admin/GetAllUser.jsx";
+import GetAllUser from "./pages/Admin/UserList.jsx";
+import Teacterslist from "./pages/Admin/Teacterslist.jsx";
+import TeacherbyID from "./pages/Admin/TeacherbyID.jsx";
+import UserList from "./pages/Admin/UserList.jsx";
+import UserByID from "./pages/Admin/UserByID.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -37,11 +41,18 @@ const routes = createBrowserRouter(
       {/* Admin routes */}
       <Route path="" element={<AdminRoutes />}>
         {/* Add admin routes here */}
-        <Route path="/admin/add-teacher" element={<AddTeacher />} />
-        <Route path="/admin/approve-students" element={<ApproveStudents />} />
         <Route path="/admin/get-all-users" element={<GetAllUser />} />
+        <Route path="/admin/add-teacher" element={<AddTeacher />} />
+        <Route path="/admin/teachers" element={<Teacterslist />} />
+        <Route path="/admin/teacher/:userId" element={<TeacherbyID />} />
 
-        {/* <Route path="/admin/users" element={<UserList />} /> */}
+        <Route path="/admin/users" element={<UserList />} />
+        <Route path="/admin/user/:userId" element={<UserByID />} />
+        <Route
+          path="/admin/approve-students/:id"
+          element={<ApproveStudents />}
+        />
+
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
       </Route>
     </Route>

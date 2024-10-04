@@ -46,7 +46,7 @@ const userApi = apiSlice.injectEndpoints({
       }),
     }),
     approveStatus: builder.mutation({
-      query: (id, status) => ({
+      query: ({ id, status }) => ({
         url: `${USER_URL}/user/${id}`,
         method: "PUT",
         body: { status },
