@@ -78,10 +78,25 @@ const deleteAppointment = asyncHandler(async (req, res) => {
   res.json({ message: "Appointment deleted successfully." });
 });
 
-// const getAllAppointmentsByStudentId = asyncHandler(async (req, res) => {
-//   const appointments = await Appointment.find({ studentId: req.params.id });
-//   res.json(appointments);
-// });
+const getAllAppointmentsByStudentId = asyncHandler(async (req, res) => {
+  const studentId = req.user._id; // Assuming req.user is populated by an auth middleware
+  console.log(studentId);
+
+  if (!mongoose.Types.ObjectId.isValid(studentId)) {
+    return res.status(400).json({ message: "Invalid student ID format" });
+  }
+
+  try {
+    const appointments = await Appointment.find({ studentId });
+    console.log(appointments);
+
+    res.json(appointments);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching appointments", error: error.message });
+  }
+});
 
 const getAppointmentsByTeacherId = asyncHandler(async (req, res) => {
   const { teacherId } = req.params;
@@ -110,6 +125,6 @@ export {
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
-  // getAllAppointmentsByStudentId,
+  getAllAppointmentsByStudentId,
   getAppointmentsByTeacherId,
 };

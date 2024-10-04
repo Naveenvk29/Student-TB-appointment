@@ -5,7 +5,7 @@ import {
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
-  //   getAllAppointmentsByStudentId,
+  getAllAppointmentsByStudentId,
   getAppointmentsByTeacherId,
 } from "../controllers/appoinment.controllers.js";
 import {
@@ -19,20 +19,16 @@ const router = express.Router();
 router
   .route("/")
   .post(authenticatedUser, createAppointment)
-  .get(authenticatedUser, authoriziedAsTeacher, getAllAppointments);
+  .get(authenticatedUser, getAllAppointments);
 
 router
   .route("/:id")
-  .get(authenticatedUser, authoriziedAsTeacher, getAppointmentById)
+  .get(authenticatedUser, getAppointmentById)
   .put(authenticatedUser, authoriziedAsTeacher, updateAppointment)
   .delete(authenticatedUser, authoriziedAsTeacher, deleteAppointment);
 
-// router
-//   .route("/student/:id")
-//   .get(authenticatedUser, authoriziedAsAdmin, getAllAppointmentsByStudentId);
+router.route("/student").get(authenticatedUser, getAllAppointmentsByStudentId);
 
-router
-  .route("/teacher/:id")
-  .get(authenticatedUser, authoriziedAsAdmin, getAppointmentsByTeacherId);
+router.route("/teacher/:id").get(authenticatedUser, getAppointmentsByTeacherId);
 
 export default router;
