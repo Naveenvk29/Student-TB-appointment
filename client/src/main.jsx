@@ -26,6 +26,7 @@ import Teacterslist from "./pages/Admin/Teacterslist.jsx";
 import TeacherbyID from "./pages/Admin/TeacherbyID.jsx";
 import UserList from "./pages/Admin/UserList.jsx";
 import UserByID from "./pages/Admin/UserByID.jsx";
+import AdminDashBoard from "./pages/Admin/DashBoard/AdminDashBoard.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ const routes = createBrowserRouter(
       {/* Admin routes */}
       <Route path="" element={<AdminRoutes />}>
         {/* Add admin routes here */}
+        <Route path="/admin/dashboard" element={<AdminDashBoard />} />
         <Route path="/admin/get-all-users" element={<GetAllUser />} />
         <Route path="/admin/add-teacher" element={<AddTeacher />} />
         <Route path="/admin/teachers" element={<Teacterslist />} />
@@ -52,8 +54,6 @@ const routes = createBrowserRouter(
           path="/admin/approve-students/:id"
           element={<ApproveStudents />}
         />
-
-        {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
       </Route>
     </Route>
   )
