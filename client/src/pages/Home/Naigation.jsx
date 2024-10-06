@@ -70,7 +70,10 @@ const Naigation = () => {
               </>
             )}
             {userInfo?.role === "teacher" && (
-              <Link className=" flex items-center text-[1.1vw] my-3  ">
+              <Link
+                to={"/teacher/get-appointment"}
+                className=" flex items-center text-[1.1vw] my-3  "
+              >
                 <h1>Get aplication </h1>
               </Link>
             )}

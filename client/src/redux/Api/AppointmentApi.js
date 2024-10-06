@@ -23,14 +23,14 @@ const appointmentApi = apiSlice.injectEndpoints({
       }),
     }),
     updateAppointment: builder.mutation({
-      query: (id, data) => ({
+      query: ({ id, status }) => ({
         url: `${APPOINTMENT_URL}/${id}`,
         method: "PUT",
-        body: data,
+        body: { status },
       }),
     }),
     deleteAppointment: builder.mutation({
-      query: (id) => ({
+      query: ({ id }) => ({
         url: `${APPOINTMENT_URL}/${id}`,
         method: "DELETE",
       }),

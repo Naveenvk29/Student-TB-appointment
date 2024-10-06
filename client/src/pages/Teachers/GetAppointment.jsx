@@ -43,13 +43,12 @@ const GetAppointment = () => {
             {appointment.feedback && (
               <p className="text-lg">Feedback: {appointment.feedback}</p>
             )}
-            {appointment.status === "pending" && (
-              <Link to={`/teacher/update-appointment/${appointment._id}`}>
-                <button className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
-                  Update
-                </button>
-              </Link>
-            )}
+
+            <Link to={`/teacher/update-appointment/${appointment._id}`}>
+              <button className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
+                Update
+              </button>
+            </Link>
           </div>
         ))}
       </div>

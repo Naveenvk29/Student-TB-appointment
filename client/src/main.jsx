@@ -44,7 +44,7 @@ const routes = createBrowserRouter(
       <Route path="" element={<TeacherRoutes />}>
         <Route path="/teacher/get-appointment" element={<GetAppointment />} />
         <Route
-          path="/teacher/update-appointment/:appointmentId"
+          path="/teacher/update-appointment/:id"
           element={<UpdatedAppointment />}
         />
       </Route>
