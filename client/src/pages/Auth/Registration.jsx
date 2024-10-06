@@ -50,80 +50,85 @@ const Registration = () => {
       console.error(error);
     }
   };
+
   return (
-    <div className=" max-w-screen-xl mx-auto flex  items-center justify-evenly ">
-      <div>
+    <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-evenly p-5">
+      <div className="w-full md:w-auto ">
         <img
-          className="w-[70vh] rounded-xl shadow-sm"
+          className="h-[40vh] md:h-[70vh] w-full md:w-auto object-cover rounded-xl shadow-sm"
           src="https://images.unsplash.com/photo-1610702877019-d2dad2973403?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
+          alt="Registration"
         />
       </div>
-      <div className=" p-5 shadow-lg h-full">
+      <div className="p-5 shadow-lg w-full md:w-auto">
         <h1 className="text-2xl font-bold my-2">Registration</h1>
         <form onSubmit={handleSubmit}>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">Username</label>
             <input
               type="text"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">Email</label>
             <input
               type="email"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">Password</label>
             <input
               type="password"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">
               Confirm Password
             </label>
             <input
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
               type="password"
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">Phone</label>
             <input
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
               type="text"
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5 p-2">
             <label className="text-lg font-semibold mb-2">Address</label>
             <input
               type="text"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
           <button
-            className="w-[30vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
+            className="w-full md:w-[30vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Registing" : "Register"}
+            {isLoading ? "Registering..." : "Register"}
           </button>
           {isLoading && <Loader />}
         </form>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,11 +36,11 @@ const Login = () => {
   };
 
   return (
-    <div className=" max-w-screen-xl mx-auto flex  items-center justify-evenly ">
-      <div className=" p-5 shadow-lg h-full">
+    <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-evenly p-5">
+      <div className="p-5 shadow-lg w-full md:w-auto md:max-w-md">
         <h1 className="text-2xl font-bold my-10">Login</h1>
         <form onSubmit={handleSubmit}>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5">
             <label htmlFor="email" className="text-lg font-semibold mb-2">
               Email:
             </label>
@@ -47,14 +48,14 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <div className=" flex flex-col mb-5 p-2">
+          <div className="flex flex-col mb-5">
             <label htmlFor="password" className="text-lg font-semibold mb-2">
               Password:
             </label>
@@ -62,7 +63,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              className="w-[30vw] py-2 px-2 border border-black rounded-lg "
+              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -71,11 +72,11 @@ const Login = () => {
           </div>
 
           <button
-            className="w-[30vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
+            className="w-full md:w-[30vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
             type="submit"
             disabled={isLoading}
           >
-            {isLoading ? "Loging.." : "Login"}
+            {isLoading ? "Logging in..." : "Login"}
           </button>
           {isLoading && <Loader />}
         </form>
@@ -86,11 +87,11 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <div className="flex justify-end ">
+      <div className="flex justify-end mt-10 md:mt-0">
         <img
-          className="h-[78vh]"
+          className="h-[50vh] md:h-[78vh] object-cover"
           src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
+          alt="Login"
         />
       </div>
     </div>
