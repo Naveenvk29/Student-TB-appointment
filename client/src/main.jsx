@@ -32,12 +32,17 @@ import TeacherRoutes from "./pages/Teachers/TeacherRoutes.jsx";
 import GetAppointment from "./pages/Teachers/GetAppointment.jsx";
 import UpdatedAppointment from "./pages/Teachers/UpdatedAppointment.jsx";
 
+import Home from "./pages/Home/Home.jsx";
+import About from "./pages/Home/About.jsx";
+
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="" element={<App />}>
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Registration />} />
       <Route path="/book-appointment" element={<BookAppointment />} />
+      <Route path="/about" element={<About />} />
 
       {/* teacher */}
 

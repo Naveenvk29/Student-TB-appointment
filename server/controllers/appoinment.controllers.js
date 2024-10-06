@@ -79,45 +79,34 @@ const deleteAppointment = asyncHandler(async (req, res) => {
 });
 
 const getAllAppointmentsByStudentId = asyncHandler(async (req, res) => {
-  const studentId = req.user._id; // Assuming req.user is populated by an auth middleware
-  console.log(studentId);
-
-  if (!mongoose.Types.ObjectId.isValid(studentId)) {
-    return res.status(400).json({ message: "Invalid student ID format" });
+  // Check if student info is valid
+  if (!req.student || !req.student._id) {
+    return res.status(400).json({ message: "Invalid student information." });
   }
 
   try {
-    const appointments = await Appointment.find({ studentId });
-    console.log(appointments);
+    // const testStudentId = "66fe93acdd6eaeba0d8253b3"; // Replace with an actual valid ObjectId
+    // const appointments = await Appointment.find({ student: testStudentId });
+    const appointments = await Appointment.findOne({
+      student: req.student._id,
+    });
+
+    if (!appointments || appointments.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No appointments found for this student." });
+    }
 
     res.json(appointments);
   } catch (error) {
+    console.error(error); // Log the error for further analysis
     res
       .status(500)
-      .json({ message: "Error fetching appointments", error: error.message });
+      .json({ message: "An error occurred while retrieving appointments." });
   }
 });
 
-const getAppointmentsByTeacherId = asyncHandler(async (req, res) => {
-  const { teacherId } = req.params;
-
-  // Validate if teacherId is provided
-  if (!teacherId) {
-    return res.status(400).json({ message: "Teacher ID is required" });
-  }
-
-  // Fetch all appointments for the teacher
-  const appointments = await Appointment.find({ teacherId });
-
-  // Check if appointments exist
-  if (appointments.length === 0) {
-    return res
-      .status(404)
-      .json({ message: "No appointments found for this teacher." });
-  }
-
-  res.json(appointments);
-});
+const getAppointmentsByTeacherId = asyncHandler(async (req, res) => {});
 
 export {
   createAppointment,

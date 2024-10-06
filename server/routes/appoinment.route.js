@@ -6,12 +6,11 @@ import {
   updateAppointment,
   deleteAppointment,
   getAllAppointmentsByStudentId,
-  getAppointmentsByTeacherId,
+  // getAppointmentsByTeacherId,
 } from "../controllers/appoinment.controllers.js";
 import {
   authenticatedUser,
   authoriziedAsTeacher,
-  authoriziedAsAdmin,
 } from "../middleware/auth.middlewares.js";
 
 const router = express.Router();
@@ -29,6 +28,6 @@ router
 
 router.route("/student").get(authenticatedUser, getAllAppointmentsByStudentId);
 
-router.route("/teacher/:id").get(authenticatedUser, getAppointmentsByTeacherId);
+// router.route("/teacher/:id").get(authenticatedUser, getAppointmentsByTeacherId);
 
 export default router;

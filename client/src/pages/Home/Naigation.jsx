@@ -23,7 +23,7 @@ const Naigation = () => {
   };
 
   return (
-    <div className="w-full border-b h-[15vh] bg-transparent  mx-auto flex items-center justify-around">
+    <div className="w-full border-b h-[15vh] bg-transparent sticky  mx-auto flex items-center justify-around">
       <div className="flex justify-center items-center">
         <img src={logo} alt="" className="w-[10vw]" />
       </div>
@@ -93,7 +93,7 @@ const Naigation = () => {
           </div>
         )}
         {!userInfo && (
-          <div className="flex  gap-10">
+          <div className="flex justify-center items-center  gap-10">
             <Link to="/login" className="text-xl font-semibold ">
               Login
             </Link>
