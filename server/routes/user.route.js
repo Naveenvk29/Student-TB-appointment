@@ -9,6 +9,7 @@ import {
   updateUserProfile,
   addTeacher,
   approveStatus,
+  getUSerAppiontments,
 } from "../controllers/user.controller.js";
 
 import {
@@ -46,5 +47,9 @@ router.post(
   authoriziedAsAdmin,
   addTeacher
 );
+
+// User Appointments
+
+router.route("/appointments").get(authenticatedUser, getUSerAppiontments);
 
 export default router;

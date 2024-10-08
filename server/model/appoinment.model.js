@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const appoinmentSchema = mongoose.Schema(
+const appoinmentSchema = new mongoose.Schema(
   {
     teacher: {
       type: mongoose.Schema.Types.ObjectId,

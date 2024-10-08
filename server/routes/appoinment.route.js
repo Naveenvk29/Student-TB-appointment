@@ -1,12 +1,10 @@
-import express, { application } from "express";
+import express from "express";
 import {
   createAppointment,
   getAllAppointments,
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
-  getAllAppointmentsByStudentId,
-  // getAppointmentsByTeacherId,
 } from "../controllers/appoinment.controllers.js";
 import {
   authenticatedUser,
@@ -25,9 +23,5 @@ router
   .get(authenticatedUser, getAppointmentById)
   .put(authenticatedUser, authoriziedAsTeacher, updateAppointment)
   .delete(authenticatedUser, authoriziedAsTeacher, deleteAppointment);
-
-router.route("/student").get(authenticatedUser, getAllAppointmentsByStudentId);
-
-// router.route("/teacher/:id").get(authenticatedUser, getAppointmentsByTeacherId);
 
 export default router;

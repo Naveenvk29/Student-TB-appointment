@@ -59,8 +59,12 @@ const userApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    // getTeachers: builder.query({})
-    // deleteTeachers: builder.mutation({})
+    getMyAppointments: builder.query({
+      query: () => ({
+        url: `${USER_URL}/appointments`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -74,6 +78,5 @@ export const {
   useGetUserByIdQuery,
   useApproveStatusMutation,
   useAddTeacherMutation,
-  // useGetTeachersQuery,
-  // useDeleteTeachersMutation,
+  useGetMyAppointmentsQuery,
 } = userApi;

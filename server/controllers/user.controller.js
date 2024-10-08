@@ -1,6 +1,7 @@
 import User from "../model/user.model.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import createToken from "../utils/createToken.js";
+import Appointment from "../model/appoinment.model.js";
 
 const register = asyncHandler(async (req, res) => {
   const { username, email, password, phone, address } = req.body;
@@ -172,6 +173,19 @@ const approveStatus = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
+const getUSerAppiontments = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+  const appointments = await Appointment.find({
+    _id: {
+      $in: user.appointments,
+    },
+  });
+  res.json(appointments);
+});
+
 export {
   register,
   login,
@@ -182,4 +196,5 @@ export {
   updateUserProfile,
   addTeacher,
   approveStatus,
+  getUSerAppiontments,
 };

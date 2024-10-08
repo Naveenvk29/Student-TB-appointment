@@ -35,15 +35,6 @@ const appointmentApi = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
     }),
-    getMyAppointments: builder.query({
-      query: () => ({
-        url: `${APPOINTMENT_URL}/student`,
-        method: "GET",
-      }),
-    }),
-    // getAllAppointmentsByStudentId
-    // getAppointmentsByTeacherId
-    // approveStatus
   }),
 });
 
@@ -53,5 +44,4 @@ export const {
   useCreateAppointmentMutation,
   useUpdateAppointmentMutation,
   useDeleteAppointmentMutation,
-  useGetMyAppointmentsQuery,
 } = appointmentApi;

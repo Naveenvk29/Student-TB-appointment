@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 
 const ApproveStudents = () => {
   const { id } = useParams();
-  console.log(id);
 
   const navigate = useNavigate();
 
