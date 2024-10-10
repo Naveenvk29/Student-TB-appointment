@@ -49,14 +49,14 @@ const Navigation = () => {
         >
           About
         </Link>
-        {/* {userInfo && (
+        {userInfo && (
           <Link
             className="text-lg md:text-xl font-semibold hover:underline"
             to="/appointments"
           >
             Appointments
           </Link>
-        )} */}
+        )}
         <Link
           className="text-lg md:text-xl font-semibold hover:underline"
           to="/book-appointment"

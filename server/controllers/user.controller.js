@@ -173,17 +173,18 @@ const approveStatus = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
-const getUSerAppiontments = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
+const getUserAppointments = asyncHandler(async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).populate("appointments");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // If user.appointments is already populated
+    res.json(user.appointments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  const appointments = await Appointment.find({
-    _id: {
-      $in: user.appointments,
-    },
-  });
-  res.json(appointments);
 });
 
 export {
@@ -196,5 +197,5 @@ export {
   updateUserProfile,
   addTeacher,
   approveStatus,
-  getUSerAppiontments,
+  getUserAppointments,
 };

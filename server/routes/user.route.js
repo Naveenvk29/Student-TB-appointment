@@ -9,7 +9,7 @@ import {
   updateUserProfile,
   addTeacher,
   approveStatus,
-  getUSerAppiontments,
+  getUserAppointments,
 } from "../controllers/user.controller.js";
 
 import {
@@ -50,6 +50,6 @@ router.post(
 
 // User Appointments
 
-router.route("/appointments").get(authenticatedUser, getUSerAppiontments);
+router.route("/appointments").get(authenticatedUser, getUserAppointments);
 
 export default router;

@@ -41,6 +41,10 @@ const BookAppointment = () => {
     <div className="max-w-screen-lg mx-auto p-6">
       <div className="p-8 shadow-md rounded">
         <h1 className="text-2xl font-bold mb-6">Book an Appointment</h1>
+        <p className="text-sm text-gray-500">
+          Select a teacher, provide the appointment time, and describe the
+          purpose of your appointment.
+        </p>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -54,7 +58,7 @@ const BookAppointment = () => {
               id="teacher"
               value={teacherId}
               onChange={(e) => setTeacherId(e.target.value)}
-              className="w-full p-2 border border-black rounded-xl "
+              className="w-full p-2 border border-black rounded-xl"
             >
               <option value="">Select Teacher</option>
               {teachers?.map((teacher) => (
@@ -77,7 +81,7 @@ const BookAppointment = () => {
               type="datetime-local"
               value={appointmentTime}
               onChange={(e) => setAppointmentTime(e.target.value)}
-              className="w-full p-2 border border-black rounded-xl "
+              className="w-full p-2 border border-black rounded-xl"
             />
           </div>
 
@@ -94,9 +98,15 @@ const BookAppointment = () => {
               placeholder="Enter Purpose"
               value={purpose}
               onChange={(e) => setPurpose(e.target.value)}
-              className="w-full p-2 border border-black rounded-xl "
+              className="w-full p-2 border border-black rounded-xl"
             />
           </div>
+
+          {userInfo?.status === "pending" && (
+            <p className="text-sm text-red-500">
+              You must be approved by a teacher before booking an appointment.
+            </p>
+          )}
 
           {userInfo ? (
             <button
@@ -109,7 +119,10 @@ const BookAppointment = () => {
           ) : (
             <p className="text-lg">
               Please{" "}
-              <Link className="text-lg font-medium text-blue-500 hover:underline">
+              <Link
+                to="/login"
+                className="text-lg font-medium text-blue-500 hover:underline"
+              >
                 login
               </Link>{" "}
               to book an appointment.
