@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useGetUserByIdQuery } from "../redux/Api/userApi";
+import { useSelector } from "react-redux";
 const AppointmentCard = ({ appointment }) => {
   const { data: user, isLoading: isUserLoading } = useGetUserByIdQuery(
     appointment.student
   );
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   if (isUserLoading) return <p>Loading student information...</p>;
 
@@ -32,7 +35,7 @@ const AppointmentCard = ({ appointment }) => {
         <p className="text-lg">Feedback: {appointment.feedback}</p>
       )}
 
-      {user.role == "teacher" && (
+      {userInfo.role == "teacher" && (
         <Link to={`/teacher/update-appointment/${appointment._id}`}>
           <button className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-md">
             Update
