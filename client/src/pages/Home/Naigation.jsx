@@ -49,6 +49,7 @@ const Navigation = () => {
         >
           About
         </Link>
+
         {userInfo && (
           <Link
             className="text-lg md:text-xl font-semibold hover:underline"
@@ -63,6 +64,12 @@ const Navigation = () => {
         >
           Book Appointment
         </Link>
+        <Link
+          className="text-lg md:text-xl font-semibold hover:underline"
+          to="/massage"
+        >
+          Message
+        </Link>
       </div>
 
       {/* User Section */}
@@ -76,11 +83,11 @@ const Navigation = () => {
           ) : null}
         </button>
         {isDropOpen && userInfo && (
-          <div className="absolute top-[3vw] w-[40vw] md:w-[12vw] right-0 md:right-5 md:top-5 py-4 rounded-lg flex flex-col items-center bg-gray-700 text-white px-5 hover:bg-black hover:text-white">
+          <div className="absolute w-[40vw] md:w-[14vw] -right-3 top-8 md:top-10 py-4 rounded-lg flex flex-col items-center bg-gray-700 text-white px-5 hover:bg-black hover:text-white transition duration-300 ease-in-out">
             {userInfo?.role === "admin" && (
               <Link
                 to="/admin/dashboard"
-                className="flex items-center text-base md:text-lg my-3"
+                className="flex items-center text-sm md:text-lg my-2 md:my-3"
               >
                 <h1>Dashboard</h1>
               </Link>
@@ -88,20 +95,20 @@ const Navigation = () => {
             {userInfo?.role === "teacher" && (
               <Link
                 to={"/teacher/get-appointment"}
-                className="flex items-center text-base md:text-lg my-3"
+                className="flex items-center text-sm md:text-lg my-2 md:my-3"
               >
                 <h1>Get Application</h1>
               </Link>
             )}
             <Link
               to="/profile"
-              className="flex items-center text-base md:text-lg my-1"
+              className="flex items-center text-sm md:text-lg my-2 md:my-3"
             >
               <span>Profile</span>
             </Link>
             <button
               onClick={handleLogout}
-              className="flex items-center text-base md:text-lg my-1"
+              className="flex items-center text-sm md:text-lg my-2 md:my-3"
             >
               <span>Logout</span>
             </button>
@@ -147,6 +154,9 @@ const Navigation = () => {
             to="/book-appointment"
           >
             Book Appointment
+          </Link>
+          <Link className="text-lg font-semibold hover:underline" to="/massage">
+            Message
           </Link>
           {!userInfo && (
             <div className="flex flex-col space-y-2">
