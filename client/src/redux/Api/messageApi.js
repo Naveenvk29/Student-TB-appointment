@@ -16,7 +16,17 @@ const messageApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    deleteMessage: builder.mutation({
+      query: (id) => ({
+        url: `${MESSAGE_URL}/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllMessagesQuery, useSendMessageMutation } = messageApi;
+export const {
+  useGetAllMessagesQuery,
+  useSendMessageMutation,
+  useDeleteMessageMutation,
+} = messageApi;

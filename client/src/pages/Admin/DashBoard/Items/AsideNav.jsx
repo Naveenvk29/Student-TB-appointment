@@ -47,6 +47,12 @@ const AsideNav = () => {
         >
           Get Appointment
         </Link>
+        <Link
+          className="p-2 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
+          to={"/teacher/messages"}
+        >
+          Message List
+        </Link>
       </div>
     </div>
   );

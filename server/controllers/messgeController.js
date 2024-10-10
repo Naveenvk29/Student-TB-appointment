@@ -29,4 +29,15 @@ const getAllMessages = asyncHandler(async (req, res) => {
   res.json(messages);
 });
 
-export { sendMessage, getAllMessages };
+const deleteMessageById = asyncHandler(async (req, res) => {
+  const message = await Message.findById(req.params.id);
+
+  if (!message) {
+    return res.status(404).json({ message: "Message not found." });
+  }
+
+  await message.deleteOne();
+  res.json({ message: "Message deleted successfully." });
+});
+
+export { sendMessage, getAllMessages, deleteMessageById };

@@ -35,6 +35,7 @@ import UpdatedAppointment from "./pages/Teachers/UpdatedAppointment.jsx";
 import Home from "./pages/Home/Home.jsx";
 import About from "./pages/Home/About.jsx";
 import Massage from "./pages/Home/Massage.jsx";
+import MessagesList from "./pages/Teachers/MessagesList.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -54,6 +55,7 @@ const routes = createBrowserRouter(
           path="/teacher/update-appointment/:id"
           element={<UpdatedAppointment />}
         />
+        <Route path="/teacher/messages" element={<MessagesList />} />
       </Route>
 
       {/* Private routes */}
