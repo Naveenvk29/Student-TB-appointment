@@ -36,7 +36,7 @@ const AsideNav = () => {
           Teachers List
         </Link>
         <Link
-          className="p-2 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
+          className="p-3 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
           to={"/admin/users"}
         >
           Users List
