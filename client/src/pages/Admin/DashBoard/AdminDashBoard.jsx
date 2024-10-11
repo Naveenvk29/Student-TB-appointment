@@ -1,10 +1,15 @@
 import AsideNav from "./Side/AsideNav";
 import Hero from "./Hero/Hero";
+
 const AdminDashBoard = () => {
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-col md:flex-row gap-5">
       <AsideNav />
-      <Hero />
+      <div className="w-full md:ml-[20vw]">
+        {" "}
+        {/* This adds space for the fixed AsideNav */}
+        <Hero />
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const AsideNav = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   return (
-    <div className="w-full md:w-[20vw] h-[85vh] px-5 py-5 border shadow-lg flex flex-col items-center">
+    <div className="w-full md:w-[20vw] h-auto md:h-[85vh] px-5 py-5 border shadow-lg flex flex-col items-center bg-gray-100 md:fixed">
       <div className="w-full flex flex-col items-center">
         <img
           className="w-[40vw] md:w-[10vw] h-auto rounded-full mb-4"
@@ -22,7 +22,7 @@ const AsideNav = () => {
           </h3>
         )}
       </div>
-      <div className="w-full flex flex-col gap-3 text-xl">
+      <div className="w-full flex flex-col gap-3 text-lg md:text-xl">
         <Link
           className="p-2 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
           to={"/admin/add-teacher"}
@@ -36,7 +36,7 @@ const AsideNav = () => {
           Teachers List
         </Link>
         <Link
-          className="p-3 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
+          className="p-2 font-semibold hover:bg-slate-700 hover:text-slate-50 transition duration-500 rounded-lg"
           to={"/admin/users"}
         >
           Users List

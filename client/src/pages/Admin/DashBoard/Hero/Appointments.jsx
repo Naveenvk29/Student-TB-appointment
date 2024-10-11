@@ -5,6 +5,9 @@ const Appointments = ({ appointments }) => {
   const pendingCount = appointments?.filter(
     (appointment) => appointment.status === "pending"
   ).length;
+  const canceledCount = appointments?.filter(
+    (appointment) => appointment.status === "canceled"
+  ).length;
 
   return (
     <div className="max-w-screen-md mx-auto p-6">
@@ -12,7 +15,7 @@ const Appointments = ({ appointments }) => {
 
       {appointments && appointments.length > 0 ? (
         <div className="space-y-4">
-          <div className="flex gap-5 mb-6">
+          <div className="flex justify-evenly mb-6">
             <div className="p-4 bg-green-200 rounded flex flex-col justify-center items-center shadow">
               <p className="text-lg font-semibold">Approved:</p>
               <p className="text-2xl font-bold text-green-600">
@@ -20,10 +23,14 @@ const Appointments = ({ appointments }) => {
               </p>
             </div>
             <div className="p-4 bg-yellow-200 rounded flex flex-col justify-center items-center shadow">
-              <p className="text-lg font-semibold">Pending:</p>
+              <p className="text-lg font-semibold ">Pending:</p>
               <p className="text-2xl font-bold text-yellow-600">
                 {pendingCount}
               </p>
+            </div>
+            <div className="p-4 bg-red-200 rounded flex flex-col justify-center items-center shadow">
+              <p className="text-lg font-semibold ">Pending:</p>
+              <p className="text-2xl font-bold text-red-600">{canceledCount}</p>
             </div>
           </div>
         </div>
