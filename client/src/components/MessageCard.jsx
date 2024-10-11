@@ -1,5 +1,6 @@
 import { useGetUserByIdQuery } from "../redux/Api/userApi";
 import { useDeleteMessageMutation } from "../redux/Api/messageApi";
+import { toast } from "react-toastify";
 
 const MessageCard = ({ message }) => {
   const {
@@ -11,11 +12,14 @@ const MessageCard = ({ message }) => {
   console.log(message);
 
   const [deleteMessage] = useDeleteMessageMutation();
+  const id = message._id;
   const handleDeleteMessage = async () => {
     try {
-      await deleteMessage({ id: message._id });
+      await deleteMessage({ id });
+      toast.success("Message deleted successfully!");
     } catch (error) {
       console.error("Error deleting message:", error);
+      toast.error("Failed to delete message.");
     }
   };
 

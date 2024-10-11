@@ -17,7 +17,7 @@ const messageApi = apiSlice.injectEndpoints({
       }),
     }),
     deleteMessage: builder.mutation({
-      query: (id) => ({
+      query: ({ id }) => ({
         url: `${MESSAGE_URL}/${id}`,
         method: "DELETE",
       }),
