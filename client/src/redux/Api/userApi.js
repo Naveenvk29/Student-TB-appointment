@@ -59,6 +59,19 @@ const userApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateTeacher: builder.mutation({
+      query: (data) => ({
+        url: `${USER_URL}/teacher/${data.id}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    deleteTeacher: builder.mutation({
+      query: ({ id }) => ({
+        url: `${USER_URL}/teacher/${id}`,
+        method: "DELETE",
+      }),
+    }),
     getMyAppointments: builder.query({
       query: () => ({
         url: `${USER_URL}/appointments`,
@@ -79,4 +92,6 @@ export const {
   useApproveStatusMutation,
   useAddTeacherMutation,
   useGetMyAppointmentsQuery,
+  useUpdateTeacherMutation,
+  useDeleteTeacherMutation,
 } = userApi;
