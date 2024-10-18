@@ -9,7 +9,7 @@ const Hero = () => {
   const { data: appointments } = useGetAppointmentsQuery();
   const { data: messages } = useGetAllMessagesQuery();
   return (
-    <div className="max-w-screen-lg mx-auto mt-5">
+    <div className="max-w-screen-lg mx-auto">
       <RealTime users={users} />
       <Appointments appointments={appointments} />
       <Message messages={messages} />

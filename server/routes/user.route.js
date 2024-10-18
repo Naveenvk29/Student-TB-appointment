@@ -10,6 +10,8 @@ import {
   addTeacher,
   approveStatus,
   getUserAppointments,
+  updateTeacher,
+  deleteTeacher,
 } from "../controllers/user.controller.js";
 
 import {
@@ -47,6 +49,13 @@ router.post(
   authoriziedAsAdmin,
   addTeacher
 );
+
+// Update teacher details
+
+router
+  .route("/teacher/:id")
+  .put(authenticatedUser, authoriziedAsAdmin, updateTeacher)
+  .delete(authenticatedUser, authoriziedAsAdmin, deleteTeacher);
 
 // User Appointments
 

@@ -127,8 +127,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 });
 
 const addTeacher = asyncHandler(async (req, res) => {
-  const { username, email, password, phone, address } = req.body;
-  if (!username || !email || !password) {
+  const { username, email, password, phone, address, department, subject } =
+    req.body;
+
+  if (!username || !email || !password || !department || !subject) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -136,15 +138,19 @@ const addTeacher = asyncHandler(async (req, res) => {
   if (userExists) {
     return res.status(400).json({ message: "Email already exists" });
   }
+
   const user = new User({
     username,
     email,
     password,
     phone,
     address,
+    department,
+    subject,
     role: "teacher",
     status: "approved",
   });
+
   try {
     await user.save();
     createToken(res, user._id);
@@ -156,6 +162,8 @@ const addTeacher = asyncHandler(async (req, res) => {
       status: user.status,
       phone: user.phone,
       address: user.address,
+      department: user.department,
+      subject: user.subject,
     });
   } catch (error) {
     return res.status(500).json({ message: "Server Error" });
@@ -179,12 +187,48 @@ const getUserAppointments = asyncHandler(async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    // If user.appointments is already populated
     res.json(user.appointments);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+});
+
+const updateTeacher = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { username, email, phone, address, department, subject } = req.body;
+
+  const user = await User.findById(id);
+  if (!user || user.role !== "teacher") {
+    return res.status(404).json({ message: "Teacher not found" });
+  }
+
+  user.username = username || user.username;
+  user.email = email || user.email;
+  user.phone = phone || user.phone;
+  user.address = address || user.address;
+  user.department = department || user.department;
+  user.subject = subject || user.subject;
+
+  const updatedUser = await user.save();
+  res.json({
+    _id: updatedUser._id,
+    username: updatedUser.username,
+    email: updatedUser.email,
+    department: updatedUser.department,
+    subject: updatedUser.subject,
+  });
+});
+
+const deleteTeacher = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+  if (!user || user.role !== "teacher") {
+    return res.status(404).json({ message: "Teacher not found" });
+  }
+
+  await user.deleteOne();
+  res.json({ message: "Teacher deleted" });
 });
 
 export {
@@ -198,4 +242,6 @@ export {
   addTeacher,
   approveStatus,
   getUserAppointments,
+  updateTeacher,
+  deleteTeacher,
 };

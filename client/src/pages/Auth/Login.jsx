@@ -48,7 +48,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
+              className="w-full md:w-[26vw] py-2 px-2 border border-black rounded-lg"
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -63,7 +63,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              className="w-full md:w-[30vw] py-2 px-2 border border-black rounded-lg"
+              className="w-full md:w-[26vw] py-2 px-2 border border-black rounded-lg"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -72,7 +72,7 @@ const Login = () => {
           </div>
 
           <button
-            className="w-full md:w-[30vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
+            className="w-full md:w-[26vw] py-3 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300 ease-in-out"
             type="submit"
             disabled={isLoading}
           >
@@ -81,7 +81,7 @@ const Login = () => {
           {isLoading && <Loader />}
         </form>
         <p className="text-md mt-2 font-semibold">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link to="/register" className="hover:text-blue-500 hover:underline">
             Register
           </Link>

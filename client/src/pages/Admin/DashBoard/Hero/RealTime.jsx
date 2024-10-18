@@ -5,7 +5,7 @@ const RealTime = ({ users }) => {
     users?.filter((user) => user.role === "user").length || 0;
 
   return (
-    <div className="max-w-screen-md mx-auto p-6">
+    <div className="max-w-screen-md mx-auto p-6 shadow-xl">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Real-Time User Stats
       </h1>
