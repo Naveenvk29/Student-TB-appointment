@@ -1,7 +1,7 @@
 import { useAddTeacherMutation } from "../../redux/Api/userApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import Loader from "../../components/Loader";
 import { useState } from "react";
 
 const departmentSubjects = {
