@@ -4,7 +4,7 @@ import { Setcredentials } from "../../redux/features/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import Loader from "../../components/Loader";
 
 const Registration = () => {
   const [username, setUsername] = useState("");
