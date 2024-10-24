@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://student-tb-appointment-server.onrender.com",
+      "/api": "https://student-tb-appointment-api.onrender.com",
     },
   },
 });
