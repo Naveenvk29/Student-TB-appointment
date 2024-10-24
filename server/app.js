@@ -5,11 +5,11 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.route.js";
 import appoinmentRoutes from "./routes/appoinment.route.js";
 import messageRoutes from "./routes/message.route.js";
+
 const app = express();
+app.use(cors());
 
 app.use(express.json());
-
-app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
